@@ -15,7 +15,7 @@ Single-page website for King Performance Therapy, a physical therapy private pra
      doctorName: "Dr. Jane Smith, DPT",
      tagline: "Your tagline here.",
      email: "you@example.com",
-     address: "123 Main St, Suite 100<br>City, CA 90001",
+     address: "123 Main St, Suite 100<br>Bergen County, NJ 07601",
      formspreeId: "abc1234",  // from formspree.io
    };
    ```
