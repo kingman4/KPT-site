@@ -6,6 +6,5 @@ var CONFIG = {
   tagline: "Helping you move better, feel stronger, and live without limits.",
   email: "hello@kingpt.com",
   address: "123 Main Street, Suite 100<br>Los Angeles, CA 90001",
-  city: "Los Angeles",
   formspreeId: "YOUR_FORM_ID",
 };

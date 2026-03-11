@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="King Performance Therapy — physical therapy services in [City], CA. Specializing in sports rehab, orthopedic, neurological, and general wellness care.">
+  <meta name="description" content="King Performance Therapy — physical therapy services in Los Angeles, CA. Specializing in sports rehab, orthopedic, neurological, and general wellness care.">
   <title>King Performance Therapy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -530,11 +530,6 @@
 
     var heroTagline = document.querySelector('.hero-tagline');
     if (heroTagline) heroTagline.textContent = CONFIG.tagline;
-
-    var metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content',
-      'King Performance Therapy \u2014 physical therapy services in ' + CONFIG.city +
-      ', CA. Specializing in sports rehab, orthopedic, neurological, and general wellness care.');
 
     var emailLink = document.querySelector('.contact-item a[href^="mailto:"]');
     if (emailLink) {

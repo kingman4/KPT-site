@@ -16,7 +16,6 @@ Single-page website for King Performance Therapy, a physical therapy private pra
      tagline: "Your tagline here.",
      email: "you@example.com",
      address: "123 Main St, Suite 100<br>City, CA 90001",
-     city: "City",
      formspreeId: "abc1234",  // from formspree.io
    };
    ```
