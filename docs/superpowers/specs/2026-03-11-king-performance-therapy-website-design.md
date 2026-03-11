@@ -21,7 +21,7 @@ Full-viewport section with the practitioner's headshot as a full-width backgroun
 
 - Practice name "KING PERFORMANCE THERAPY" displayed prominently
 - Doctor's name and "DPT" credential
-- Warm, approachable tagline (content TBD)
+- Warm, approachable tagline — placeholder text used during development, to be replaced with client-provided copy before launch
 - Text positioned at bottom-left over a subtle gradient overlay for readability against the photo
 - Scroll indicator (subtle down arrow or animated cue) to hint at more content below
 - On mobile: same full-width photo, text repositioned/resized for small screens
@@ -34,7 +34,7 @@ Inline block section (60–80vh tall) containing a lifestyle/movement brand vide
 - As the user scrolls down, the video plays forward; scrolling up rewinds
 - Implementation: `requestAnimationFrame` loop reading `scrollY` relative to the video element's offset, setting `video.currentTime` accordingly
 - The video file will be provided by the client (lifestyle/wellness/movement content)
-- On mobile: same scroll-sync behavior with reduced section height; fallback to auto-play on intersection if scroll-sync performs poorly on the device
+- On mobile (< 640px): use Intersection Observer to auto-play the video when it enters the viewport instead of scroll-sync (simpler, more reliable on touch devices); on tablet and desktop: scroll-sync
 
 ### 3. Specialties
 
@@ -42,13 +42,13 @@ Section heading (e.g., "What We Treat" or "Areas of Focus") followed by an icon 
 
 - **Layout:** 3 columns on desktop, 2 on tablet, 1 on mobile
 - **Each card:** icon + specialty name + brief description (1–2 sentences)
-- **Specialties** (general PT practice, exact list TBD):
+- **Specialties** (6 cards):
   - Sports Rehab / Return to Sport
   - Orthopedic / Post-Surgical
   - Neurological Rehab
   - Chronic Pain Management
   - General Wellness / Injury Prevention
-  - (Possibly 1–2 more based on client input)
+  - Balance & Fall Prevention
 - Icons: simple line icons or emoji — consistent style across all cards
 
 ### 4. USC Affiliation
@@ -58,6 +58,7 @@ Minimal section establishing academic credentials.
 - USC logo displayed centered
 - Brief credential line (e.g., "USC Doctor of Physical Therapy")
 - Clean design — generous whitespace, logo does the heavy lifting
+- USC logo optionally links to the USC DPT program page
 - Logo asset will need to be provided or sourced with appropriate usage rights
 
 ### 5. Contact & Waitlist
@@ -72,7 +73,7 @@ Side-by-side layout that stacks vertically on mobile.
 **Right column — Waitlist Form:**
 - Fields: Name, Email, Brief message (optional)
 - Submit button: "Join Waitlist"
-- **Form backend:** Formspree, Netlify Forms, or similar no-code service (decision deferred to implementation — no custom backend)
+- **Form backend:** Formspree (free tier, POST to external endpoint, works with any static host, no vendor lock-in)
 - Success state: inline confirmation message replacing the form after submission
 
 ## Visual Design
@@ -84,7 +85,9 @@ Warm and approachable — the site should feel like a welcoming small practice, 
 - Warm neutrals as base (off-whites, soft tans, warm grays)
 - One accent color for buttons, icons, and highlights (warm tone — e.g., terracotta, sage, or golden)
 - Dark text on light backgrounds for readability
-- Exact palette to be determined during implementation
+- Primary accent: warm sage green (#7C9070) — buttons, icons, highlights
+- Secondary: soft terracotta (#C4785B) for the "not accepting patients" notice warm styling
+- Exact shades may be adjusted during implementation for contrast compliance
 
 ### Typography
 - One Google Font (or system font stack) for headings — warm, modern sans-serif
@@ -111,6 +114,14 @@ Warm and approachable — the site should feel like a welcoming small practice, 
 - USC logo (or confirmation of usage rights)
 - Final copy: tagline, specialty descriptions, contact details
 - Preferred accent color (or approval of designer's choice)
+
+## Accessibility
+
+- Alt text on hero background image and USC logo
+- Proper form labels and aria attributes on waitlist form
+- Color contrast ratios meeting WCAG AA (4.5:1 for body text, 3:1 for large text)
+- Video: no captions required for scroll-synced decorative video (no audio content)
+- Semantic HTML (header, main, section, footer)
 
 ## Out of Scope
 
