@@ -515,9 +515,41 @@
   <footer>
     <p>&copy; 2026 King Performance Therapy. All rights reserved.</p>
   </footer>
+  <script src="config.js"></script>
   <script>
 (function() {
   'use strict';
+
+  // -- Apply config --
+  if (typeof CONFIG !== 'undefined') {
+    var hero = document.getElementById('hero');
+    if (hero) hero.setAttribute('aria-label', 'Portrait of ' + CONFIG.doctorName);
+
+    var heroName = document.querySelector('.hero-name');
+    if (heroName) heroName.textContent = CONFIG.doctorName;
+
+    var heroTagline = document.querySelector('.hero-tagline');
+    if (heroTagline) heroTagline.textContent = CONFIG.tagline;
+
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content',
+      'King Performance Therapy \u2014 physical therapy services in ' + CONFIG.city +
+      ', CA. Specializing in sports rehab, orthopedic, neurological, and general wellness care.');
+
+    var emailLink = document.querySelector('.contact-item a[href^="mailto:"]');
+    if (emailLink) {
+      emailLink.href = 'mailto:' + CONFIG.email;
+      emailLink.textContent = CONFIG.email;
+    }
+
+    var addressSpan = document.querySelector('.contact-item span');
+    if (addressSpan) addressSpan.innerHTML = CONFIG.address;
+
+    var waitlistForm = document.getElementById('waitlist-form');
+    if (waitlistForm && CONFIG.formspreeId) {
+      waitlistForm.action = 'https://formspree.io/f/' + CONFIG.formspreeId;
+    }
+  }
 
   // -- Scroll-synced video --
   const video = document.getElementById('scroll-video');
