@@ -113,6 +113,88 @@
       50% { transform: translateX(-50%) translateY(8px); }
     }
 
+    /* -- Shared section styles -- */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--color-text-light);
+      max-width: 550px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+    }
+
+    /* -- Specialties -- */
+    #specialties {
+      padding: var(--section-padding);
+      background: var(--color-bg);
+    }
+
+    .specialties-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .specialty-card {
+      background: var(--color-white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .specialty-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .specialty-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .specialty-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--color-text);
+    }
+
+    .specialty-card p {
+      font-size: 0.95rem;
+      color: var(--color-text-light);
+      line-height: 1.55;
+    }
+
+    /* Tablet: 2 columns */
+    @media (min-width: 640px) {
+      .specialties-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Desktop: 3 columns */
+    @media (min-width: 1024px) {
+      .specialties-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
     /* -- Scroll Video -- */
     #video {
       position: relative;
@@ -149,7 +231,44 @@
     </video>
   </section>
   <main>
-    <section id="specialties"></section>
+    <section id="specialties">
+      <div class="container">
+        <h2 class="section-title">Areas of Focus</h2>
+        <p class="section-subtitle">Comprehensive physical therapy for every stage of recovery and wellness.</p>
+        <div class="specialties-grid">
+          <div class="specialty-card">
+            <span class="specialty-icon" aria-hidden="true">🏃</span>
+            <h3>Sports Rehab</h3>
+            <p>Return to sport safely with evidence-based rehabilitation tailored to your activity and goals.</p>
+          </div>
+          <div class="specialty-card">
+            <span class="specialty-icon" aria-hidden="true">🦴</span>
+            <h3>Orthopedic / Post-Surgical</h3>
+            <p>Recover strength and mobility after surgery or musculoskeletal injury with hands-on care.</p>
+          </div>
+          <div class="specialty-card">
+            <span class="specialty-icon" aria-hidden="true">🧠</span>
+            <h3>Neurological Rehab</h3>
+            <p>Improve function and independence for neurological conditions through targeted therapy.</p>
+          </div>
+          <div class="specialty-card">
+            <span class="specialty-icon" aria-hidden="true">💪</span>
+            <h3>Chronic Pain Management</h3>
+            <p>Address persistent pain with a whole-person approach combining movement, education, and manual therapy.</p>
+          </div>
+          <div class="specialty-card">
+            <span class="specialty-icon" aria-hidden="true">🌿</span>
+            <h3>General Wellness</h3>
+            <p>Prevent injury and maintain your best physical health with proactive wellness programs.</p>
+          </div>
+          <div class="specialty-card">
+            <span class="specialty-icon" aria-hidden="true">⚖️</span>
+            <h3>Balance & Fall Prevention</h3>
+            <p>Build confidence and stability with assessments and exercises designed to reduce fall risk.</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="usc"></section>
     <section id="contact"></section>
   </main>
