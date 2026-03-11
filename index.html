@@ -423,7 +423,7 @@
       </svg>
     </a>
   </header>
-  <section id="video" aria-hidden="true">
+  <section id="video" aria-hidden="true" style="display:none">
     <video id="scroll-video" muted playsinline preload="auto" poster="assets/headshot.jpg">
       <source src="assets/video.mp4" type="video/mp4">
     </video>
@@ -546,11 +546,20 @@
     }
   }
 
-  // -- Scroll-synced video --
+  // -- Scroll-synced video (only show if video file exists) --
   const video = document.getElementById('scroll-video');
   const videoSection = document.getElementById('video');
 
   if (video && videoSection) {
+    fetch('assets/video.mp4', { method: 'HEAD' }).then(function(res) {
+      if (res.ok) {
+        videoSection.style.display = '';
+        setupVideo();
+      }
+    }).catch(function() {});
+  }
+
+  function setupVideo() {
     const isMobile = () => window.innerWidth < 640;
 
     // Desktop/tablet: scroll-sync
