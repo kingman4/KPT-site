@@ -195,6 +195,38 @@
       }
     }
 
+    /* -- USC Affiliation -- */
+    #usc {
+      padding: var(--section-padding);
+      background: var(--color-bg-warm);
+      text-align: center;
+    }
+
+    .usc-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .usc-logo {
+      max-width: 180px;
+      height: auto;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
+    }
+
+    .usc-logo:hover {
+      opacity: 1;
+    }
+
+    .usc-credential {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--color-text-light);
+    }
+
     /* -- Scroll Video -- */
     #video {
       position: relative;
@@ -269,7 +301,14 @@
         </div>
       </div>
     </section>
-    <section id="usc"></section>
+    <section id="usc">
+      <div class="container usc-content">
+        <a href="https://pt.usc.edu/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/usc-logo.png" alt="University of Southern California logo" class="usc-logo">
+        </a>
+        <p class="usc-credential">USC Doctor of Physical Therapy</p>
+      </div>
+    </section>
     <section id="contact"></section>
   </main>
   <footer></footer>
