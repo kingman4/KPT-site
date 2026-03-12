@@ -1,5 +1,4 @@
 // Copy this file to config.js and fill in your values.
-// config.js is gitignored — your personal info stays out of version control.
 
 var CONFIG = {
   doctorName: "Dr. Jane Smith, DPT",
