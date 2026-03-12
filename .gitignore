@@ -1,3 +1,5 @@
 .superpowers/
 .DS_Store
 config.js
+docs/
+.claude/
