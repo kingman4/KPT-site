@@ -12,13 +12,13 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@200;300;400;500&family=DM+Serif+Display&&display=swap" rel="stylesheet">
   <style>
     :root {
-      --color-accent: #7C9070;
-      --color-accent-dark: #5E7255;
-      --color-secondary: #C4785B;
-      --color-bg: #FAF8F5;
-      --color-bg-warm: #F3EDE7;
-      --color-text: #2C2C2C;
-      --color-text-light: #6B6B6B;
+      --color-accent: #C4785B;
+      --color-accent-dark: #A85D42;
+      --color-secondary: #4A5A8A;
+      --color-bg: #FAF7F4;
+      --color-bg-warm: #F0E8E0;
+      --color-text: #2A2438;
+      --color-text-light: #6B5F75;
       --color-white: #FFFFFF;
       --font-heading: 'DM Sans', system-ui, -apple-system, sans-serif;
       --font-body: system-ui, -apple-system, -webkit-system-font, 'Segoe UI', Roboto, sans-serif;
@@ -159,17 +159,26 @@
       #hero {
         flex-direction: column;
         justify-content: center;
-        padding: 24px;
-        gap: 24px;
+        padding: 16px;
+        gap: 16px;
       }
       .hero-image {
-        height: 45vh;
+        height: 40vh;
+        max-height: 40vh;
       }
       .hero-content {
         padding: 0;
         text-align: center;
         align-items: center;
         max-width: 100%;
+        flex-shrink: 1;
+        overflow: hidden;
+      }
+      .hero-name {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+      }
+      .hero-tagline {
+        font-size: 1rem;
       }
     }
 
@@ -223,37 +232,63 @@
     }
 
     .specialty-card {
+      position: relative;
       background: var(--color-white);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      box-shadow: var(--shadow);
-      text-align: center;
+      border-radius: 24px;
+      padding: 32px 28px;
+      border: 1px solid rgba(196, 120, 91, 0.12);
+      box-shadow: 0 2px 16px rgba(42, 36, 56, 0.06);
+      overflow: hidden;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .specialty-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(42, 36, 56, 0.12);
+    }
+
+    .spotlight-overlay {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
 
     .specialty-icon {
-      font-size: 2rem;
-      display: block;
-      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(196, 120, 91, 0.1);
+      margin-bottom: 16px;
+      color: var(--color-accent);
+    }
+
+    .specialty-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .specialty-card h3 {
       font-family: var(--font-heading);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--color-text);
     }
 
     .specialty-card p {
       font-size: 0.95rem;
       color: var(--color-text-light);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     /* Tablet: 2 columns */
@@ -354,8 +389,8 @@
     }
 
     .notice {
-      background: #FDF5F0;
-      border: 1px solid #E8D5CA;
+      background: #F5F0FA;
+      border: 1px solid #D8CEE5;
       border-left: 3px solid var(--color-secondary);
       border-radius: var(--radius-sm);
       padding: 16px;
@@ -363,16 +398,24 @@
 
     .notice p {
       font-size: 0.92rem;
-      color: #7A5A45;
+      color: #4A4060;
       line-height: 1.5;
     }
 
     /* -- Waitlist Form -- */
     .waitlist-form-wrapper {
+      position: relative;
       background: var(--color-white);
-      border-radius: var(--radius);
+      border-radius: 24px;
       padding: 32px 28px;
-      box-shadow: var(--shadow);
+      border: 1px solid rgba(196, 120, 91, 0.12);
+      box-shadow: 0 2px 16px rgba(42, 36, 56, 0.06);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .waitlist-form-wrapper:hover {
+      box-shadow: 0 8px 32px rgba(42, 36, 56, 0.12);
     }
 
     .form-title {
@@ -393,7 +436,7 @@
       font-family: var(--font-body);
       font-size: 0.95rem;
       padding: 12px 16px;
-      border: 1px solid #DDD;
+      border: 1px solid #D5CDE0;
       border-radius: var(--radius-sm);
       background: var(--color-bg);
       color: var(--color-text);
@@ -496,32 +539,50 @@
         <p class="section-subtitle">Comprehensive physical therapy for every stage of recovery and wellness.</p>
         <div class="specialties-grid">
           <div class="specialty-card">
-            <span class="specialty-icon" aria-hidden="true">🏃</span>
+            <div class="spotlight-overlay"></div>
+            <span class="specialty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M13 4v4l4-2"/><circle cx="13" cy="9" r="3"/><path d="M7 21l3-8 3 5 3-5 3 8"/><path d="M16 14l-1-2"/></svg>
+            </span>
             <h3>Sports Rehab</h3>
             <p>Return to sport safely with evidence-based rehabilitation tailored to your activity and goals.</p>
           </div>
           <div class="specialty-card">
-            <span class="specialty-icon" aria-hidden="true">🦴</span>
+            <div class="spotlight-overlay"></div>
+            <span class="specialty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18 2l-3 6h6l-3 6"/><path d="M6 22l3-6H3l3-6"/><path d="M12 8v8"/></svg>
+            </span>
             <h3>Orthopedic / Post-Surgical</h3>
             <p>Recover strength and mobility after surgery or musculoskeletal injury with hands-on care.</p>
           </div>
           <div class="specialty-card">
-            <span class="specialty-icon" aria-hidden="true">🧠</span>
+            <div class="spotlight-overlay"></div>
+            <span class="specialty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.5-1.3 4.8-3.5 6.2L12 18l-3.5-2.8C6.3 13.8 5 11.5 5 9a7 7 0 0 1 7-7z"/><path d="M12 18v4"/><path d="M8 9h1"/><path d="M15 9h1"/><path d="M10 6.5C10.5 7 11.2 7.5 12 7.5s1.5-.5 2-1"/></svg>
+            </span>
             <h3>Neurological Rehab</h3>
             <p>Improve function and independence for neurological conditions through targeted therapy.</p>
           </div>
           <div class="specialty-card">
-            <span class="specialty-icon" aria-hidden="true">💪</span>
+            <div class="spotlight-overlay"></div>
+            <span class="specialty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+            </span>
             <h3>Chronic Pain Management</h3>
             <p>Address persistent pain with a whole-person approach combining movement, education, and manual therapy.</p>
           </div>
           <div class="specialty-card">
-            <span class="specialty-icon" aria-hidden="true">🌿</span>
+            <div class="spotlight-overlay"></div>
+            <span class="specialty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1.5 2.5-.5 6c2-1 3.5-1.5 3.5-1.5s0 2.5-2 5a7 7 0 0 1-7 7z"/><path d="M10 14l1.5-3 1.5 3"/></svg>
+            </span>
             <h3>General Wellness</h3>
             <p>Prevent injury and maintain your best physical health with proactive wellness programs.</p>
           </div>
           <div class="specialty-card">
-            <span class="specialty-icon" aria-hidden="true">⚖️</span>
+            <div class="spotlight-overlay"></div>
+            <span class="specialty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M3 12h3l2-4 4 8 2-4h3"/><circle cx="12" cy="3" r="1"/></svg>
+            </span>
             <h3>Balance & Fall Prevention</h3>
             <p>Build confidence and stability with assessments and exercises designed to reduce fall risk.</p>
           </div>
@@ -555,6 +616,7 @@
             </div>
           </div>
           <div class="waitlist-form-wrapper">
+            <div class="spotlight-overlay"></div>
             <h3 class="form-title">Join the Waitlist</h3>
             <form id="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
               <label for="name" class="sr-only">Name</label>
@@ -704,6 +766,26 @@
       });
     });
   }
+  // -- Spotlight cards --
+  document.querySelectorAll('.specialty-card, .waitlist-form-wrapper').forEach(function(card) {
+    var overlay = card.querySelector('.spotlight-overlay');
+    if (!overlay) return;
+
+    card.addEventListener('mousemove', function(e) {
+      var rect = card.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      overlay.style.background = 'radial-gradient(circle at ' + x + 'px ' + y + 'px, rgba(196,120,91,0.18), transparent 80%)';
+    });
+
+    card.addEventListener('mouseenter', function() {
+      overlay.style.opacity = '1';
+    });
+
+    card.addEventListener('mouseleave', function() {
+      overlay.style.opacity = '0';
+    });
+  });
 })();
 </script>
 </body>
