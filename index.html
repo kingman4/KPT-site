@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@200;300;400;500&family=DM+Serif+Display&&display=swap" rel="stylesheet">
   <style>
     :root {
       --color-accent: #7C9070;
@@ -50,12 +50,14 @@
     /* -- Hero -- */
     #hero {
       position: relative;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 48px 24px;
-      background: url('assets/headshot.jpg') center/cover no-repeat, linear-gradient(135deg, #8a9a7e, #6b7a60);
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 5vw;
+      padding: 0 5vw;
+      background: url('assets/hero-bg.png') center/cover no-repeat;
       color: var(--color-white);
       overflow: hidden;
     }
@@ -63,39 +65,77 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+      background: rgba(0,0,0,0.4);
       pointer-events: none;
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 1;
+      height: 85vh;
+      width: auto;
+      object-fit: cover;
+      display: block;
+      border-radius: 16px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      flex-shrink: 0;
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: var(--max-width);
+      padding: 48px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      text-align: right;
+      max-width: 600px;
+    }
+
+    .hero-label,
+    .hero-name,
+    .hero-tagline {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
     }
 
     .hero-label {
-      font-family: var(--font-heading);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 2.5px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      margin-bottom: 12px;
-      opacity: 0.9;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation-delay: 0.3s;
     }
 
     .hero-name {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 12px;
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+      animation-delay: 0.6s;
     }
 
     .hero-tagline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 200;
       max-width: 500px;
-      opacity: 0.9;
-      line-height: 1.5;
+      line-height: 1.6;
+      animation-delay: 0.9s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .scroll-indicator {
@@ -104,8 +144,8 @@
       left: 50%;
       transform: translateX(-50%);
       color: var(--color-white);
-      opacity: 0.7;
-      animation: bounce 2s ease-in-out infinite;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease 1.2s forwards, bounce 2s ease-in-out 1.8s infinite;
       text-decoration: none;
       z-index: 1;
     }
@@ -113,6 +153,24 @@
     @keyframes bounce {
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    @media (max-width: 768px) {
+      #hero {
+        flex-direction: column;
+        justify-content: center;
+        padding: 24px;
+        gap: 24px;
+      }
+      .hero-image {
+        height: 45vh;
+      }
+      .hero-content {
+        padding: 0;
+        text-align: center;
+        align-items: center;
+        max-width: 100%;
+      }
     }
 
     /* -- Scroll Video -- */
@@ -412,13 +470,14 @@
   </style>
 </head>
 <body>
-  <header id="hero" role="img" aria-label="Portrait of Dr. [Name], physical therapist">
+  <header id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="hero-label">King Performance Therapy</p>
       <h1 class="hero-name">Dr. [Name], DPT</h1>
       <p class="hero-tagline">Helping you move better, feel stronger, and live without limits.</p>
     </div>
+    <img src="assets/headshot.jpg" alt="Portrait of Dr. [Name], physical therapist" class="hero-image">
     <a href="#specialties" class="scroll-indicator" aria-label="Scroll to learn more">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6 9 12 15 18 9"></polyline>
